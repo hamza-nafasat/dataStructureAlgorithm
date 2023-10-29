@@ -1,4 +1,4 @@
-let array = [9, 6, 7, 8, 4, 3, 2, 1, 5, 0];
+let array = [9, 6, 7, 8, 4, 3, 12, 1, 5, 0];
 
 // SORTING ARRAY WITH OWN WAY NORMAL APPROCH
 // +++++++++++++++++++++++++++++++++++++++++
@@ -37,7 +37,7 @@ while (length1 > 0) {
 }
 console.log(newArr);
 
-// ADVANCE APPROCH FOR SORTING ARRAY WITHOUT USING ANY METHOD
+//  APPROCH FOR SORTING ARRAY WITHOUT USING splice METHOD
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function arraySorting(array) {
@@ -46,23 +46,26 @@ function arraySorting(array) {
     let sortedArray = [];
     let pushIndex = 0;
     let minIndex;
+
     while (length > 0) {
         minIndex = 0;
+
         for (let i = 1; i < arr.length; i++) {
             if (arr[i] < arr[minIndex]) minIndex = i;
         }
         sortedArray[pushIndex] = arr[minIndex];
-        // .......delete pushed element without splice...........
-        (function deletNumber(minIndex, elements) {
+
+        // Use an IIFE to delete the element
+        (function () {
             let deletedArray = [];
             for (let i = 0; i < minIndex; i++) {
-                deletedArray[i] = arr[i];
+                deletedArray.push(arr[i]);
             }
-            for (let i = minIndex + elements; i < arr.length; i++) {
-                deletedArray[i] = arr[i];
+            for (let i = minIndex + 1; i < arr.length; i++) {
+                deletedArray.push(arr[i]);
             }
             arr = deletedArray;
-        })(minIndex, 1);
+        })();
         pushIndex++;
         length--;
     }
