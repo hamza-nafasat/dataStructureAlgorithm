@@ -1,24 +1,13 @@
-let array = [9, 6, 7, 8, 4, 3, 12, 1, 5, 0];
+let array = [49, 6, 17, 28, 64, 3, 12, 1, 65, 0];
+
+// SORTING ARRAY WITH OWN WAY ORIGNAL APPROCH
+// +++++++++++++++++++++++++++++++++++++++++
+
+let arr = array.sort((a, b) => a - b);
+console.log(arr);
 
 // SORTING ARRAY WITH OWN WAY NORMAL APPROCH
 // +++++++++++++++++++++++++++++++++++++++++
-
-let newarr = [];
-let arr = [...array];
-let length = arr.length;
-
-let index;
-let sortedElement;
-for (let i = 0; i < length; i++) {
-    sortedElement = arr.reduce((a, b) => (a < b ? a : b));
-    newarr.push(sortedElement);
-    index = arr.indexOf(sortedElement);
-    arr.splice(index, 1);
-}
-console.log(newarr);
-
-// GOOD APPROCH FOR SORTING ARRAY WITHOUT USING SORTING
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 let arr1 = [...array];
 let length1 = arr1.length;
@@ -37,8 +26,27 @@ while (length1 > 0) {
 }
 console.log(newArr);
 
+// GOOD APPROCH FOR SORTING ARRAY WITH ANOTHER WAY
+// ++++++++++++++++++++++++++++++++++++++++++++++++
+
+function sortArray(array) {
+    let arr = [...array];
+
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr.length; j++) {
+            if (arr[j] > arr[j + 1]) {
+                let num = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = num;
+            }
+        }
+    }
+    return arr;
+}
+console.log(sortArray(array));
+
 //  APPROCH FOR SORTING ARRAY WITHOUT USING splice METHOD
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function arraySorting(array) {
     let arr = [...array];
